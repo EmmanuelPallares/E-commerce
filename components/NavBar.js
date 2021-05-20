@@ -1,12 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 
 function NavBar() {
-  const router=useRouter()
-  const isActive=(r) =>{
-    if (router === r)
-  }
+  const router = useRouter();
+  const isActive = (r) => {
+    if (r === router.pathname) {
+      return "active";
+    }else{
+      return " ";
+
+    }
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link href="/">
@@ -24,28 +29,31 @@ function NavBar() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <div
+        className="collapse navbar-collapse justify-content-end"
+        id="navbarNavDropdown"
+      >
         <ul className="navbar-nav">
           <li className="nav-item ">
             <Link href="/cart">
-              <a className="nav-link"><i
-                className="fas fa-shopping-cart position-relative"
-                aria-hidden="true"
-              ></i>
-              Cart</a>
+              <a className={"nav-link" + isActive("/cart")}>
+                <i
+                  className="fas fa-shopping-cart position-relative"
+                  aria-hidden="true"
+                ></i>
+                Carrito
+              </a>
             </Link>
           </li>
           <Link href="/signin">
-                                <a className="nav-link" >
-                                    <i className="fas fa-user" aria-hidden="true"></i> Iniciar Sesión
-                                </a>
-                            </Link>
-
-         
+            <a className={"nav-link" + isActive('/signin')}>
+              <i className="fas fa-user" aria-hidden="true"></i> Iniciar Sesión
+            </a>
+          </Link>
         </ul>
       </div>
     </nav>
   );
 }
 
-export default NavBar
+export default NavBar;
